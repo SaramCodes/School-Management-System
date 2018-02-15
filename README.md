@@ -25,4 +25,12 @@ I've done most of the work. I've made all the relavent views and everything for 
 I still have to make the views for the student. I have yet to make the views for the Roll Calls. I will be updating the full project in about a week.
 
 
-Feel free to use it any way you like! :D 
+## To Run The Program:
+
+First use a virtual environment and install everything listed in requirements.txt. The admin email is : "admin@company.com" and the password is: "aaaa1111".
+
+If however you wish to start fresh, just delete the db.sqlite3 file. Then run manage.py migrate and you'll be on your way. However, please note that the program will not work if you delete the migraions. Don't delete the migrations (you can delete the ones ending with .pyc though). I'm sure there's a workaround but seeing my models.py files and going through the trouble of changing them is kinda too scary atm. T_T
+
+
+
+Feel free to use it any way you like! :D
