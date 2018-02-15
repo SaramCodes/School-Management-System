@@ -1,0 +1,42 @@
+{% extends 'index.html' %}
+
+{% block title %}Login{% endblock title%}
+
+{% block customcss %} {% load static %}<link rel="stylesheet" href="{% static 'css/login.css' %}"> {% endblock customcss %}
+
+
+{% block new_page %}
+<div class="main-body" id="particles-js"></div>
+<div >
+      <form method='POST' class="form-body hoverable">{% csrf_token %}
+        <h2>LOGIN</h2>
+
+        {% if messages %}
+        {% for m in messages %}
+        <div>
+        <p class="center-align red-text">{{m}}</p>
+        </div>
+        <div class="progress white">
+        <div class="indeterminate red lighten-3"></div>
+        </div>
+        {% endfor %}
+
+        {% endif %}
+      {% for field in form %}
+      <div class="input-field">
+      <input type="{{field.field.widget.input_type}}", name="{{field.html_name}}", id="{{field.id_for_label}}", class='validate'>
+      <label for="{{field.id_for_label}}">{{ field.html_name }}</label>
+      </div>
+      {% endfor %}
+      <button type="submit", class="btn waves-effect waves-light deep-purple darken-2 white-text">Login</button>
+      <p><a href="#">Forget Password?</a></p>
+      </form>
+
+</div>
+
+{% block customjs %}
+<script type="text/javascript" src="{% static 'js/particles.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/login.js' %}"></script>
+{% endblock customjs %}
+
+{% endblock new_page %}

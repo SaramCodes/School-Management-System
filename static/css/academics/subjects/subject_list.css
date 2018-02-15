@@ -1,0 +1,119 @@
+
+.ma-something{
+  font-weight: 1000;
+  font-family: lato;
+  text-align: center !important;
+}
+
+.lina {
+  width: 90%;
+}
+
+.my-heada{
+  text-transform: uppercase;
+  font-weight: 1000;
+  font-family: lato;
+  text-align: left;
+  color:#009688;
+}
+
+.ma-dato{
+  text-align: center;
+}
+
+.my-grade-detail{
+  color: #ff8a80;
+  transition-duration: 0.3s;
+}
+.my-grade-detail:hover{
+  border-bottom: solid 2px #ff8a80;
+  color:#009688 ;
+}
+
+
+.my-text, .my-list, .my-list-klasses{
+  text-align: left;
+}
+
+.my-list p a{
+  color: #009688;
+  border-left: solid 3px #e57373;
+  padding-left: 10px;
+  margin-left: 5vw;
+  transition-duration: 0.3s;
+}
+
+.my-list-klasses h4 a{
+  color: #009688;
+  border-left: solid 3px #e57373;
+  padding-left: 10px;
+  margin-left: 0;
+  transition-duration: 0.3s;
+}
+
+.my-list-klasses h4 a:hover{
+  border-left: solid 8px #009688;
+  color:#ff8a80 ;
+}
+
+
+.my-list p a:hover{
+  border-left: solid 8px #009688;
+  color:#ff8a80 ;
+}
+
+.my-list h4 a{
+  color: #009688;
+  border-left: solid 3px #e57373;
+  padding-left: 10px;
+  margin-left: 5vw;
+  transition-duration: 0.3s;
+}
+
+
+.my-list h4 a:hover{
+  border-left: solid 8px #009688;
+  color:#ff8a80 ;
+}
+
+.my-btn{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right:5px;
+}
+
+@media(max-width:1100px){
+  .boto{
+    font-size: 0.8em;
+  }
+}
+
+
+@media(max-width:900px){
+  .boto{
+    padding-bottom:20px;
+  }
+
+  .my-heada{
+    font-size:2.4em;
+    text-align: center;
+  }
+}
+
+@media(max-width:600px){
+
+  .my-heada{
+    font-size:2.0em;
+  }
+  .boto{
+      height: 24px;
+      line-height: 24px;
+      padding: 0 0.5rem;
+      font-size:0.7em !important;
+  }
+
+  .my-list p a{
+    padding-left: 10px;
+    margin-left: 0vw;
+  }
+}

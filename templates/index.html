@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+  <link rel="stylesheet" href="{% static 'materialize/css/materialize.min.css' %}">
+  {% block headercss %} <link rel="stylesheet" href="{% static 'css/header.css' %}"> {% endblock headercss %}
+  {% block customcss %} <link rel="stylesheet" href="{% static 'css/home.css' %}"> {% endblock customcss %}
+  <title>{% block title %}School Management System{% endblock %}</title>
+</head>
+
+<body>
+
+  {% block new_page %}
+
+
+  <header>
+
+    <div class="my-nav">
+
+      <div class="row">
+        <div class="col xl7 l7 m7 s12 ma-nav">
+          <ul class="nav-ul" >
+            {% block headernavs %}
+            {% if request.user.is_authenticated %}
+
+              {% if request.user.is_student %}
+
+              <li><a href="#" class="waves-effect waves-teal">MY GRADES</a></li>
+              <li><a href="#" class="waves-effect waves-teal">NOTICE BOARD</a></li>
+              <li><a href="#" class="waves-effect waves-teal">ASSIGNMENTS</a></li>
+              <a class='dropdown-button btn my-dropdown teal lighten-2' data-beloworigin="true" href='#' data-activates='dropdown1'>Hi {{request.user.first_name}}! <i class="medium material-icons">arrow_drop_down</i></a>
+
+              <ul id='dropdown1' class='dropdown-content'>
+               <li><a href="{{request.user.get_absolute_url}}">Profile</a></li>
+               <li><a href="{% url 'change_password' %}">Change Password</a></li>
+               <li><a href="{% url 'logout_view' %}">Logout</a></li>
+             </ul>
+
+              {% elif request.user.is_teacher %}
+              <li><a href="{% url 'semester-view' %}" class="waves-effect waves-teal">GRADE</a></li>
+              <li><a href="#" class="waves-effect waves-teal">MARK ATTENDENCE</a></li>
+              <li><a href="#" class="waves-effect waves-teal">NOTICE BOARD</a></li>
+              <a class='dropdown-button btn my-dropdown teal lighten-2' data-beloworigin="true" href='#' data-activates='dropdown1'>Hi {{request.user.first_name}}! <i class="medium material-icons">arrow_drop_down</i></a>
+
+              <ul id='dropdown1' class='dropdown-content'>
+               <li><a href="{{request.user.get_absolute_url}}">Profile</a></li>
+               <li><a href="{% url 'change_password' %}">Change Password</a></li>
+               <li><a href="{% url 'logout_view' %}">Logout</a></li>
+             </ul>
+
+              {% elif request.user.is_admin %}
+              <li><a href="{% url 'user_view' %}" class="waves-effect waves-teal">USERS</a></li>
+              <li><a href="{% url 'klasses_list_view' %}" class="waves-effect waves-teal">CLASSES</a></li>
+              <li><a href="{% url 'academics_view' %}" class="waves-effect waves-teal">ACEDEMICS</a></li>
+              <li><a href="#" class="waves-effect waves-teal">ADD NOTICE</a></li>
+
+              <a class='dropdown-button btn my-dropdown teal lighten-2' data-beloworigin="true" href='#' data-activates='dropdown1'>Hi {{request.user.first_name}}! <i class="medium material-icons">arrow_drop_down</i></a>
+
+              <ul id='dropdown1' class='dropdown-content'>
+               <li><a href="{{request.user.get_absolute_url}}">Profile</a></li>
+               <li><a href="{% url 'change_password' %}">Change Password</a></li>
+               <li><a href="{% url 'logout_view' %}">Logout</a></li>
+             </ul>
+
+              {% endif %}
+
+            {% else %}
+            <li><a href="#" class="waves-effect waves-teal">OVERVIEW</a></li>
+            <li><a href="#" class="waves-effect waves-teal">CONTACT</a></li>
+            <li><a href="#" class="waves-effect waves-teal">ABOUT</a></li>
+            <li><a href="{% url 'login_view' %}" class="waves-effect waves-teal"><span>LOGIN</span></a></li>
+
+            {% endif %}
+            {% endblock headernavs %}
+          </ul>
+        </div>
+
+        <div class="col s2">
+          <a href="#" data-activates="mobile-demo" class="button-collapse hum"><i class="material-icons">menu</i></a>
+          <ul class="side-nav" id="mobile-demo">
+            {% block side-navs %}
+            {% if request.user.is_authenticated %}
+
+              {% if request.user.is_student %}
+
+              <li><a href="#" class="waves-effect waves-red">My Grades</a></li>
+              <li><a href="#" class="waves-effect waves-red">Notice Board</a></li>
+              <li><a href="#" class="waves-effect waves-red">Assignments</a></li>
+              <li><a href="{{request.user.get_absolute_url}}" class="waves-effect waves-red">PROFILE</a></li>
+              <li><a href="{% url 'change_password' %}" class="waves-effect waves-red">CHANGE PASSWORD</a></li>
+              <li><a href="{% url 'logout_view' %}" class="waves-effect waves-red">LOGOUT</a></li>
+
+              {% elif request.user.is_teacher %}
+              <li><a href="{% url 'semester-view' %}" class="waves-effect waves-red">Grades</a></li>
+              <li><a href="#" class="waves-effect waves-red">Mark Attendence</a></li>
+              <li><a href="#" class="waves-effect waves-red">Notice Board</a></li>
+              <li><a href="{{request.user.get_absolute_url}}" class="waves-effect waves-red">PROFILE</a></li>
+              <li><a href="{% url 'change_password' %}" class="waves-effect waves-red">CHANGE PASSWORD</a></li>
+              <li><a href="{% url 'logout_view' %}" class="waves-effect waves-red">LOGOUT</a></li>
+
+              {% elif request.user.is_admin %}
+              <li><a href="{% url 'user_view' %}" class="waves-effect waves-red">USERS</a></li>
+              <li><a href="{% url 'klasses_list_view' %}" class="waves-effect waves-red">CLASSES</a></li>
+              <li><a href="{% url 'academics_view' %}" class="waves-effect waves-red">ACADEMICS</a></li>
+              <li><a href="#" class="waves-effect waves-red">ADD NOTICE</a></li>
+              <li><a href="{{request.user.get_absolute_url}}" class="waves-effect waves-red">PROFILE</a></li>
+              <li><a href="{% url 'change_password' %}" class="waves-effect waves-red">CHANGE PASSWORD</a></li>
+              <li><a href="{% url 'logout_view' %}" class="waves-effect waves-red">LOGOUT</a></li>
+
+
+
+              {% endif %}
+
+            {% else %}
+            <li><a href="#" class="waves-effect waves-red">OVERVIEW</a></li>
+            <li><a href="#" class="waves-effect waves-red">CONTACT</a></li>
+            <li><a href="#" class="waves-effect waves-red">ABOUT</a></li>
+            <li><a href="{% url 'login_view' %}" class="waves-effect waves-red">LOGIN</a></li>
+
+            {% endif %}
+            {% endblock side-navs %}
+          </ul>
+        </div>
+
+        <div class="col xl5 l5 m5 offset-10">
+          <a href="{% url 'home' %}" class='my-logo'>SCHOOL MANAGEMENT SYSTEM<br><span class="qaka"> BETA VERSION</span></a>
+        </div>
+
+    </div>
+
+    </div>
+
+
+    <div class='little-bar'></div>
+  </header>
+  {% block content %}
+  <section>
+      <div class="organise" id="particles-js">
+        <h2 class='animated fadeInUp header-logo top-head'>ONE PLACE TO MANAGE EVERYTHING</h2>
+        <div class='my-little-bar'></div>
+      </div>
+  </section>
+
+
+  <!--KEEP THINGS ORGANISED -->
+  <section class="things-organise-grid">
+
+    <div class="row">
+    <div class="col m6 l6 xl6 s12">
+    <div class="things-organise-div animated" id="keep-things-animate">
+      <h2 class="header-logo">KEEP THINGS ORGANIZED</h2>
+      <p>Records of students, classes and grades etc are a bit of hassle a to deal with. We can do most of the heavy lifting for you. Just register your teachers, students etc and let this
+      program do it’s job.</p>
+    </div>
+  </div>
+
+    <div class="col m6 l6 xl6 s12 rice-man animated" id='rice-man-animate'>  </div>
+
+  </div>
+  </section>
+
+
+
+  <section class="manage-grid">
+    <div class="row">
+
+      <div class="pencil-man animated col xl5 l5 m5 s5" id="pencil-man-animate"></div>
+
+      <div class="manage-div animated col xl7 l7 m7 s7" id="manage-easily-animate">
+        <h2 class="header-logo">MANAGE EASILY</h2>
+        <p>Records of students, classes and grades etc are a bit of hassle a to deal with. We can do most of the heavy lifting for you. Just register your teachers, students etc and let this
+        program do it’s job.</p>
+      </div>
+
+    </div>
+
+
+  </section>
+
+  <section class="contact-me">
+
+  <div class="row">
+
+    <div class="col xl4 l4 m4 s12">
+      <div class="cat1 animated" id="cat-1"></div>
+    </div>
+
+    <div class="col xl4 l4 m4 s12">
+      <div class="contact-div">
+      <h2 class="animated header-logo" id="contact-me-1">CONTACT US</h2>
+      <p class="animated" id="contact-me-2"><i class="inline-icon material-icons">email</i> Email: name@companyname.com</p>
+      <p class="animated" id="contact-me-3"><i class="inline-icon material-icons">phone</i> Phone: +000333555</p>
+      <h3 class="animated header-logo" id="contact-me-4">OR</h3>
+      <h2 class="animated header-logo" id="contact-me-5">VISIT US</h2>
+      <p class="animated" id="contact-me-6"><i class="inline-icon material-icons">book</i> Address: 21st street on unknown avenue, Lahore</p>
+      </div>
+    </div>
+
+    <div class="col xl4 l4 m4 s12">
+      <div class="cat2 animated" id=cat-2></div>
+    </div>
+
+  </div>
+  </section>
+
+
+
+  <section class="about-me" id="about-particles">
+
+  <div class="about-text">
+  <h2 class="header-logo">ABOUT US</h2>
+  <p> Just put all the stuff related to your school/college here. Since This is a project of mine I am gonna write about myself. I am Saram Iqbal. I'm a student of BS Computer Science from Virtual University of Pakistan. I consider myself to be a full stack web developer. I also want to develop games in the future. I enjoy anime, manga and any cheerful music. I workout a lot. I hope to put other projects out soon but a single man can only do so much...</p>
+  </div>
+  </section>
+  {% endblock content %}
+
+{% endblock new_page %}
+  <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'materialize/js/materialize.min.js' %}"></script>
+  {% block customjs %}
+  <script type="text/javascript" src="{% static 'js/particles.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/particle-effect.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/home.js' %}"></script>
+  {% endblock customjs %}
+  <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+.register-bg{
+  padding: 3em 0em;
+  margin-top: 50px;
+}
+
+.headed{
+  font-family:lato;
+  font-weight: 1000;
+  text-align: center;
+  color:#009688;
+}
+
+.my-text{
+  font-family:lato;
+  font-weight: 1000;
+  color:#009688;
+}
+
+body{
+  background-color:#8086ff;
+}
+
+.my_container{
+  width:70%;
+  margin: auto;
+  background-color: rgba(237, 237, 237, 1);
+  padding:2em;
+}
+
+.pad {
+  margin-bottom: 25px;
+}
+
+
+
+@media(max-width:1160px){
+
+  .my-text{
+    font-size:1em;
+  }
+
+  .headed{
+    font-size:2.4em !important;
+  }
+}
+
+@media(max-width:600px){
+  .my-text{
+    font-size:0.8em;
+    text-align: center;
+    }
+
+  .headed{
+    font-size:2.0em !important;
+  }
+}

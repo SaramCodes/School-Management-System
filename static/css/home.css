@@ -1,0 +1,345 @@
+
+.organise{
+  height:90vh;
+  background-color:#8086ff;
+  position: relative;
+}
+
+.organise h2{
+  font-family:lato;
+  font-weight:1000;
+  position:absolute;
+  top:50%;
+  z-index: 2;
+  margin:auto;
+  width:100%;
+  color: #fff;
+  text-align: center;
+}
+
+.organise .my-little-bar{
+  position:absolute;
+  top:65%;
+  z-index: 2;
+  margin:auto;
+  width:100%;
+  background-color: #fff;
+  height:5px;
+  width:50%;
+  left:25vw;
+
+}
+
+.things-organise-div{
+  text-align:center;
+  padding-top:20vh;
+
+}
+
+.things-organise-div h2{
+  padding-bottom:30px;
+  font-family: lato;
+  font-weight:1000;
+  width: 100%;
+  margin:auto;
+  color:#a6d3e8;
+}
+
+.things-organise-div p, .manage-div p{
+  width:70%;
+  margin:auto;
+  font-size:1.3em;
+  font-family: lato;
+  font-weight:1000;
+}
+
+.rice-man{
+    background:url(../img/riceball.png);
+    background-size: stretch;
+    background-position: top;
+    background-repeat: no-repeat;
+    height:90vh;
+}
+
+
+/* Everything below is related to Manage easily section */
+
+.manage-grid{
+  background-color:#a6d3e8;
+  height:auto;
+  /* padding-top:10vh; */
+}
+
+.manage-div{
+  text-align:center;
+  margin-top:15vh;
+
+}
+
+.manage-div h2{
+  text-align:center;
+  font-family: lato;
+  font-weight:1000;
+  color:#fff;
+}
+
+.pencil-man{
+    background:url(../img/pencilman.png);
+    background-size: 100% auto;
+    background-position: top;
+    background-repeat: no-repeat;
+    height:80vh;
+}
+
+/* Contact Us */
+
+.contact-me{
+  padding-top:10vh;
+  padding-bottom:10vh;
+}
+
+.contact-me h2, .contact-me p, .contact-me h3{
+  text-align:center;
+  font-family: lato;
+  font-weight:1000;
+  color:#8086ff;
+}
+
+.cat1{
+  background:url(../img/catto.png);
+}
+
+.cat2{
+  background:url(../img/cattob.png);
+}
+
+.cat1, .cat2{
+  background-size: 100% auto;
+  background-position: top;
+  background-repeat: no-repeat;
+  height: 60vh;
+}
+
+.inline-icon {
+   vertical-align: bottom;
+   font-size: 18px !important;
+}
+
+
+/*About Me */
+.about-me{
+  background-color:#93bacc;
+  height:80vh;
+  position:relative;
+}
+
+
+.about-text{
+  top:25%;
+  width:100%;
+  position:absolute;
+  padding-bottom:10vh;
+}
+
+
+.about-text p, .about-text h2{
+  width:50%;
+  margin:auto;
+  text-align:center;
+  font-family: lato;
+  font-weight:1000;
+  color:#fff;
+}
+
+.about-text p{
+  color:#333;
+  font-size:1.3em;
+  line-height:1.6
+}
+
+.about-text h2{
+  padding-bottom: 25px;
+}
+
+
+
+
+/*         All The Media Queries Are Below     */
+
+
+@media(max-width:1160px){
+
+  .about-text p{
+    font-size:1.1em !important;
+  }
+
+  .manage-div{
+    margin-top:10vh;
+  }
+
+  .pencil-man{
+    height:60vh
+  }
+
+  .header-logo{
+    font-size: 2.7rem;
+  }
+
+  .rice-man{
+    background-size:80%;
+    height:70vh;
+  }
+
+  .things-organise-div{
+    text-align:center;
+    padding-top:10vh;
+
+  }
+}
+
+@media(max-width:787px){
+
+  .about-text{
+    top:10%;
+  }
+
+  .about-text p{
+    width:90%;
+  }
+
+  .cat1, .cat2{
+    margin-top:10vh;
+    height:35vh;
+    background-size:70%;
+  }
+
+  /* .contact-me h2, .contact-me h3{
+    font-size:1.6em;
+  } */
+
+  .contact-me p{
+    font-size:0.8em;
+  }
+
+  .contact-me{
+    padding-top:0vh;
+    padding-bottom:0vh;
+  }
+
+  .manage-div{
+    margin-top:2vh;
+  }
+
+
+  .header-logo{
+    font-size: 2.4rem;
+  }
+
+  .rice-man{
+    height:60vh
+  }
+
+  .things-organise-div{
+    padding-top:5vh;
+  }
+
+  .things-organise-div p, .manage-div p{
+    width:80%;
+    font-size:1.0em;
+  }
+
+}
+
+
+
+@media(max-width:600px){
+
+  .cat1{
+    display:none;
+  }
+
+  .cat2 {
+    background-size:30% auto;
+  }
+
+
+  .organise .my-little-bar{
+    top:85%;
+  }
+
+  .manage-div h2, .things-organise-div h2{
+    font-size: 1.5em;
+    margin-top:0;
+  }
+
+  .manage-div p {
+    font-size: 0.8em;
+  }
+
+  .pencil-man{
+    /* margin-top: 1vh; */
+    height:40vh
+  }
+
+
+  .header-logo{
+    font-size: 2.0rem;
+  }
+
+  .organise{
+    height:50vh;
+  }
+
+  .rice-man{
+    margin-top:5vh;
+    background-size:30%;
+    height:40vh;
+  }
+
+  .cat2{
+    height:25vh
+  }
+}
+
+@media(max-width:400px){
+
+  .about-me{
+    background-color:#93bacc;
+    height:80vh;
+    position:relative;
+  }
+
+  .cat2{
+    height:20vh
+  }
+
+  .about-text h2{
+    font-size:2em;
+  }
+
+  .about-text p{
+    width:90%;
+  }
+
+  .about-text p{
+    font-size:0.9em !important;
+  }
+
+  .cat1{
+    margin-top:0;
+    background-size:40%;
+  }
+  .pencil-man{
+    height:20vh;
+  }
+  .rice-man{
+    height:20vh;
+  }
+  .manage-div{
+    margin-bottom: 5vh;
+  }
+
+  .manage-div p {
+    font-size: 0.7em;
+  }
+}

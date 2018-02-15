@@ -1,0 +1,95 @@
+{% extends 'index.html' %}
+
+{% block title %}Grades | Choose a Student{% endblock title %}
+
+{% block customcss %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/userrs.css' %}">
+<link rel="stylesheet" href="{% static 'css/academics/subjects/subject_list.css' %}">
+<link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet">
+{% endblock customcss %}
+
+
+{% block content %}
+
+
+  <div class="register-bg">
+    <div class="classes-boi hoverable grey-text text-darken-2">
+
+
+      {% if students %}
+
+      <h2 class="my-heada ma-dato">GRADES</h2>
+      <h4 class="my-grade-detail">{{klass.name}}</h4>
+
+
+      <p class="my-grade-detail">{{semester.name}} - {{semester.period_start}} - {{semester.period_end}} </p> <br>
+
+
+      <div class="my-text">
+        <p>Select a student from the list below to read the details of their grades or generate a pdf:</p> <hr>
+      </div>
+
+      <div class="row">
+
+      <div class="col xl16 l12 m12 s12">
+
+        <div class="my-list">
+          {% for sub in students %}
+
+          {% if request.user.is_admin %}
+          <p><a href="/academics/grades/{{semester.id}}/student/{{sub.id}}">{{sub.first_name}} {{sub.last_name}}</a> </p>
+          {% elif request.user.is_teacher %}
+          <p><a href="/academics/grade/{{semester.id}}/student/{{sub.id}}">{{sub.first_name}} {{sub.last_name}}</a> </p>
+          {% endif %}
+
+           <div class="center">
+             {% if request.user.is_admin %}
+             <a href="/academics/grades/{{semester.id}}/student/{{sub.id}}/create" class="my-grade-detail ma-something"> Add Grade</a>
+             {% elif request.user.is_teacher %}
+             <a href="/academics/grade/{{semester.id}}/student/{{sub.id}}/create" class="my-grade-detail ma-something"> Add Grade</a>
+             {% endif %}
+            <hr class="lina">
+            </div>
+          {% endfor %}
+        </div>
+        <div class="col offset-s3 s6">
+          <a href="{{semester.get_associate_klass_url}}" class="btn waves-red boto">Go Back</a>
+        </div>
+
+      </div>
+
+      </div>
+
+      {% else %}
+
+      <h2 class="my-heada ma-dato">GRADES</h2>
+
+      <h4 class="my-grade-detail">{{klass.name}}</h4>
+
+
+      <p class="my-grade-detail">{{semester.name}} - {{semester.period_start}} - {{semester.period_end}}</p> <br>
+
+
+      <div class="my-text">
+        <p>There are no students in this class at the moment. You can grade the students once they have been added to this class.</p> <hr>
+      </div>
+
+      <div class="col offset-s3 s6">
+        <a href="{{semester.get_associate_klass_url}}" class="btn waves-red boto">Go Back</a>
+      </div>
+
+
+
+
+      {% endif %}
+
+
+  </div>
+  </div>
+
+
+{% endblock content %}
+
+{% block customjs %}
+{% endblock customjs %}

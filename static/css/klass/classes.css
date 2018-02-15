@@ -1,0 +1,105 @@
+.register-bg{
+  padding: 3em 0em;
+  margin-top: 50px;
+}
+
+.acadama-text{
+  color:#616161 !important;
+  transition: 0.5s;
+}
+
+.acadama-text:hover{
+  color:#e53935 !important;
+}
+
+
+.classes-boi{
+  border-radius: 5px;
+  color:#333;
+  text-align:center;
+  margin-top:10vh;
+  width:70%;
+  margin: auto;
+  background-color: #e5e5e5;
+  padding:2em;
+}
+
+.my-link{
+  color:#616161;
+  transition: 0.4s;
+  text-transform: uppercase;
+}
+
+.my-link:hover{
+  color:#f44336;
+}
+
+.sad{
+  font-family: 'Architects Daughter', cursive !important;
+  font-weight:200 !important;
+}
+
+.dam{
+  font-weight: 1000;
+  font-family: lato, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.classes-boi h3, .classes-boi h4, .classes-boi p{
+  font-family: lato;
+  font-weight:1000;
+}
+
+
+.span-delete{
+  color:#e57373 ;
+}
+.span-update{
+  color:#a5d6a7 ;
+}
+
+.span-boi{
+  font-weight: 1000;
+  color:#fff;
+}
+
+@media(max-width:800px){
+  .classes-boi{
+    width:80%;
+  }
+
+  .classes-boi h3{
+    font-size: 2.1em !important;
+  }
+
+  .classes-boi p{
+    font-size:0.9em;
+  }
+
+  .classes-boi h4{
+    font-size:1.8em;
+  }
+
+}
+
+
+@media(max-width:600px){
+
+    .classes-boi h3{
+      font-size: 1.9em !important;
+    }
+
+    .classes-boi h4{
+      font-size:1.5em !important;
+    }
+
+    .my-btn{
+      font-size:0.9em !important;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+
+    .classes-boi p{
+      font-size:0.8em;
+    }
+}

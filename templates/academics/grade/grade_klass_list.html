@@ -1,0 +1,67 @@
+{% extends 'index.html' %}
+
+{% block title %}Grades | Choose a Class{% endblock title %}
+
+{% block customcss %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/klass/classes.css' %}">
+<link rel="stylesheet" href="{% static 'css/academics/subjects/subject_list.css' %}">
+{% endblock customcss %}
+
+
+{% block content %}
+
+
+<div class="register-bg">
+  <div class="classes-boi hoverable grey-text text-darken-2">
+      {% if messages %}
+
+      <ul class="messages">
+          {% for message in messages %}
+          <div>
+          <li class="center-align green-text">{{message}}</li>
+          </div>
+          <div class="progress white">
+          <div class="indeterminate green lighten-2">
+          </div>
+          </div>
+          {% endfor %}
+      </ul>
+
+      {% endif %}
+
+      <h3 class="my-heada">GRADES | {{semester.name}}</h3>
+
+      <div class="my-text">
+
+        <p>Select the class and choose the students there: </p> <hr>
+      </div>
+
+      <div class="row">
+
+        <div class="col xl16 l12 m12 s12">
+
+          <div class="my-list-klasses">
+            {% for obj in klasses %}
+            <h4><a href="/academics/grades/{{semester.id}}/semester/{{obj.id}}" class="my-link">{{obj}}</a></h4> <br>
+
+
+            {% endfor %}
+            <br>
+            <br>
+
+          </div>
+
+        </div>
+
+        <div class="col offset-s3 s6">
+          <a href="{% url 'semester-view' %}" class="btn waves-red boto">Go Back</a>
+        </div>
+
+    </div>
+
+  </div>
+</div>
+{% endblock content %}
+
+{% block customjs %} {% endblock customjs %}

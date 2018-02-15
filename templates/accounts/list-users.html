@@ -1,0 +1,99 @@
+{% extends 'index.html' %}
+
+{% block title %}Accounts | Users{% endblock title %}
+
+{% block customcss %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/userrs.css' %}">
+<link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet">
+{% endblock customcss %}
+
+{% block headercss %}
+  <link rel="stylesheet" href="{% static 'css/header.css'%}">
+{% endblock headercss %}
+
+{% block headernavs %}
+<li><a href="{% url 'home' %}" class="waves-effect waves-teal">HOME</a></li>
+<li><a href="{% url 'user_creation_view' %}" class="waves-effect waves-teal">ADD USERS</a></li>
+<a class='dropdown-button btn my-dropdown teal lighten-2' data-beloworigin="true" href='#' data-activates='dropdown1'>Hi {{request.user.first_name}}! <i class="medium material-icons">arrow_drop_down</i></a>
+
+<ul id='dropdown1' class='dropdown-content'>
+ <li><a href="{{request.user.get_absolute_url}}">Profile</a></li>
+ <li><a href="{% url 'change_password' %}">Change Password</a></li>
+ <li><a href="{% url 'logout_view' %}">Logout</a></li>
+</ul>
+{% endblock headernavs %}
+
+
+{% block side-navs %}
+<li><a href="{% url 'home' %}" class="waves-effect">HOME</a></li>
+<li><a href="{% url 'user_creation_view' %}" class="waves-effect">ADD USERS</a></li>
+<li><a href="{{request.user.get_absolute_url}}#" class="waves-effect waves-red">PROFILE</a></li>
+<li><a href="{% url 'change_password' %}" class="waves-effect waves-red">CHANGE PASSWORD</a></li>
+<li><a href="{% url 'logout_view' %}" class="waves-effect waves-red">LOGOUT</a></li>
+{% endblock side-navs %}
+
+{% block content %}
+
+
+  <div class="register-bg">
+    <div class="classes-boi hoverable grey-text text-darken-2">
+      {% if messages %}
+
+      <ul class="messages">
+          {% for message in messages %}
+
+          <!-- <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{message}}</li> -->
+          <div>
+          <li class="center-align green-text">{{message}}</li>
+          </div>
+          <div class="progress white">
+          <div class="indeterminate green lighten-2"></div>
+          </div>
+
+          {% endfor %}
+      </ul>
+
+
+      {% endif %}
+
+      <h3>USERS</h3>
+      <p>To <span class="span-boi">Delete</span> or <span class="span-boi">Update</span> a user, Click on their name to be taken to their individual page:</p> <hr>
+
+            <h3>Students</h3>
+
+            {% for obj in students %}
+
+            <p><a href="{{obj.get_absolute_url}}" class="grey-text text-darken-2">{{obj.first_name}} {{obj.last_name}}</a> <br> <a href="{{obj.get_delete_url}}" class="red-text">DELETE</a> or <a href="{{obj.get_update_url}}" class="green-text text-darken-1">UPDATE</a></p>
+
+            {% empty %}
+
+            <p><p class='sad'>My only friend, there are no registerd students at the moment...</p></p>
+
+            {% endfor %}
+
+
+            <h3>Teachers</h3>
+
+            {% for obj in teachers %}
+
+            <p><a href="{{obj.get_absolute_url}}" class="grey-text text-darken-2">{{obj.first_name}} {{obj.last_name}}</a> <br> <a href="{{obj.get_delete_url}}" class="red-text">DELETE</a> or <a href="{{obj.get_update_url}}" class="green-text text-darken-1">UPDATE</a></p>
+
+            {% empty %}
+
+            <p class='sad'>My only friend, there are no registerd teachers at the moment...</p>
+
+            {% endfor %}
+
+            <h3>Admins</h3>
+
+            {% for obj in admins %}
+
+            <p><a href="{{obj.get_absolute_url}}" class="grey-text text-darken-2">{{obj.first_name}} {{obj.last_name}}</a> <br> <a href="{{obj.get_delete_url}}" class="red-text">DELETE</a> or <a href="{{obj.get_update_url}}" class="green-text text-darken-1">UPDATE</a></p>
+
+            {% endfor %}
+
+{% endblock content %}
+
+{% block customjs %}
+{% endblock customjs %}

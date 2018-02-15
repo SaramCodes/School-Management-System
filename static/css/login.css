@@ -1,0 +1,130 @@
+/* body{
+  overflow-y: hidden !important;
+} */
+.main-body{
+  position:relative;
+  background-color: #7e57c2;
+  height:150vh;
+  margin-bottom:0;
+}
+
+.form-body{
+  margin-bottom:0;
+  margin-top:10%;
+  padding:5% !important;
+  border-radius: 2px;
+  width:30%;
+  background-color: #b2dfdb;
+  padding:10vh;
+  position:absolute;
+  top:0vh;
+  left:35vw;
+}
+
+.form-body h2, .form-body h4{
+  margin-bottom: 5vh;
+  text-align: center;
+  font-family: lato;
+  font-weight: 1000;
+  color:#7e57c2;
+}
+
+@media(max-width:1100px){
+
+  .main-body{
+    height:150vh;
+  }
+  .form-body h2{
+    font-size:2.5em;
+  }
+  .form-body{
+    width:40%;
+    left:30vw;
+    top:10%;
+  }
+
+}
+
+@media (max-width:900px){
+  .form-body h2{
+    font-size:2.3em;
+  }
+
+}
+
+@media (max-width:600px){
+
+  .main-body{
+    height:120vh;
+  }
+
+  .form-body{
+    width: 60%;
+    top:20vh;
+    left:20vw;
+  }
+
+
+  .form-body h2{
+    font-size:1.8em;
+  }
+
+
+  .form-body p a{
+    font-size:0.8em;
+  }
+
+}
+
+@media (max-width:550px){
+  .form-body{
+    width: 80%;
+    top:20vh;
+    left:10vw;
+  }
+}
+
+
+/* label color */
+ .input-field label {
+   color: #333 !important;
+ }
+
+ /* label focus color */
+ .input-field input[type=text]:focus + label {
+   color: #5c57f2 !important;
+ }
+
+ .input-field input[type=email]:focus + label {
+   color: #7e57c2 !important;
+ }
+
+ .input-field input[type=password]:focus + label {
+   color: #7e57c2 !important;
+ }
+
+ /* label underline focus color */
+ .input-field input[type=text]:focus {
+   border-bottom: 1px solid #5c57f2 !important;
+   box-shadow: 0 2px 0 0 #5c57f2 !important:;
+ }
+ .input-field input[type=email]:focus {
+   border-bottom: 1px solid #7e57c2 !important;
+   box-shadow: 0 1px 0 0 #5c57f2 !important:;
+ }
+
+ .input-field input[type=password]:focus {
+   border-bottom: 1px solid #7e57c2 !important;
+   box-shadow: 0 1px 0 0 #5c57f2 !important:;
+ }
+
+ /* valid color */
+ .input-field input[type=text].valid {
+   border-bottom: 1px solid #06d157;
+   box-shadow: 0 1px 0 0 #06d157;
+ }
+
+ .input-field input[type=email].valid {
+   border-bottom: 1px solid #06d157;
+   box-shadow: 0 1px 0 0 #06d157;
+ }

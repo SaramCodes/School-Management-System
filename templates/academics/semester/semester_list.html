@@ -1,0 +1,93 @@
+{% extends 'index.html' %}
+
+{% block title %}Choose A Semester {% endblock title %}
+
+{% block customcss %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/klass/classes.css' %}">
+<link rel="stylesheet" href="{% static 'css/academics/subjects/subject_list.css' %}">
+{% endblock customcss %}
+
+
+{% block content %}
+
+
+<div class="register-bg">
+  <div class="classes-boi hoverable grey-text text-darken-2">
+      {% if messages %}
+
+      <ul class="messages">
+          {% for message in messages %}
+          <div>
+          <li class="center-align green-text">{{message}}</li>
+          </div>
+          <div class="progress white">
+          <div class="indeterminate green lighten-2">
+          </div>
+          </div>
+          {% endfor %}
+      </ul>
+
+      {% endif %}
+
+      <h2 class="my-heada">GRADES | SEMESTER</h2>
+
+      {% if semester %}
+
+      <div class="my-text">
+        {% if request.user.is_admin %}
+        <p>To begin viewing or creating grades, first choose a semester or time period from below or add a new one by clicking on the "Add Semester" button</p> <hr>
+        {% else %}
+        <p>To begin viewing or creating grades, first choose a semester or time period from below and follow the instructions on the next.</p> <hr>
+        {% endif %}
+      </div>
+
+      <div class="row">
+
+        <div class="col xl16 l12 m12 s12">
+
+          <div class="my-list-klasses">
+            {% for obj in semester %}
+
+            {% if request.user.is_admin %}
+
+            <h4><a href="{{obj.get_associate_klass_url}}" class="my-link">{{obj.name}} - {{obj.period_start}} </a></h4> <br>
+
+            {% elif request.user.is_teacher %}
+
+            <h4><a href="/academics/grade/{{obj.id}}/semester/{{request.user.part_of.id}}" class="my-link">{{obj.name}} - {{obj.period_start}}</a></h4> <br>
+
+            {% endif %}
+
+
+
+
+            {% endfor %}
+            <br>
+            <br>
+
+          </div>
+
+        </div>
+        <div class="col offset-s3 s6">
+          <a href="{% url 'academics_view' %}" class="btn waves-red boto">Go Back</a>
+        </div>
+
+      </div>
+
+      {% else %}
+
+      <div class="my-text">
+
+        <p>There are no semesters/time periods added yet... Contact the admin for further information.</p> <hr>
+      </div>
+
+
+      {% endif %}
+
+
+  </div>
+</div>
+{% endblock content %}
+
+{% block customjs %} {% endblock customjs %}

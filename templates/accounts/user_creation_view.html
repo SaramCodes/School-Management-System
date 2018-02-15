@@ -1,0 +1,189 @@
+{% extends 'index.html' %}
+
+{% block title %}Register User{% endblock title %}
+
+{% block customcss %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/student-register.css' %}">
+{% endblock customcss %}
+
+{% block headercss %}
+
+  <link rel="stylesheet" href="{% static 'css/header.css'%}">
+
+{% endblock headercss %}
+
+
+{% block headernavs %}
+<li><a href="{% url 'home' %}" class="waves-effect waves-teal">HOME</a></li>
+<li><a href="{% url 'user-list' %}" class="waves-effect waves-teal">ALL USERS</a></li>
+<a class='dropdown-button btn my-dropdown teal lighten-2' data-beloworigin="true" href='#' data-activates='dropdown1'>Hi {{request.user.first_name}}! <i class="medium material-icons">arrow_drop_down</i></a>
+
+<ul id='dropdown1' class='dropdown-content'>
+   <li><a href="{{request.user.get_absolute_url}}">Profile</a></li>
+ <li><a href="{% url 'change_password' %}">Change Password</a></li>
+ <li><a href="{% url 'logout_view' %}">Logout</a></li>
+</ul>
+{% endblock headernavs %}
+
+{% block side-navs %}
+<li><a href="{% url 'home' %}" class="waves-effect">HOME</a></li>
+<li><a href="{% url 'user-list' %}" class="waves-effect">ALL USERS</a></li>
+<li><a href="{{request.user.get_absolute_url}}" class="waves-effect waves-red">PROFILE</a></li>
+<li><a href="{% url 'change_password' %}" class="waves-effect waves-red">CHANGE PASSWORD</a></li>
+<li><a href="{% url 'logout_view' %}" class="waves-effect waves-red">LOGOUT</a></li>
+{% endblock side-navs %}
+
+{% block content %}
+<div class="register-bg">
+  <div class='my_container hoverable'>
+  <div class="row">
+    <form method="POST" class='col s12' enctype="multipart/form-data">
+      {% csrf_token %}
+      <h2 class="headed teal-text text-lighten-2">CREATE A NEW USER</h2>
+      {% if messages %}
+
+      <ul class="messages">
+        {% for m in messages %}
+
+        {% if m.tags == 'success' %}
+        <div>
+        <p class="center-align green-text">{{m}}</p>
+        </div>
+        <div class="progress white">
+        <div class="indeterminate green lighten-3"></div>
+        </div>
+
+        {% elif m.tags == 'warning' %}
+        <div>
+        <p class="center-align yellow-text text-darken-3">{{m}}</p>
+        </div>
+        <div class="progress white">
+        <div class="indeterminate yellow lighten-1"></div>
+        </div>
+
+        {% endif %}
+        {% endfor %}
+      </ul>
+
+
+      {% endif %}
+
+      {% if form.non_field_errors %}
+     <li>{{ form.non_field_errors }}</li>
+     {% endif %}
+
+      {% for field in form %}
+
+      <div class="row">
+
+
+            {% if field.html_name == 'bio' %}
+            <div class="input-field col s12 ">
+
+            <textarea name="{{field.html_name}}" id={{field.id_for_label}} class='materialize-textarea validate'></textarea>
+            <label for="{{field.id_for_label}}">{{ field.html_name }}</label>
+
+            {% if field.help_text %}
+            <p class='grey-text'>{{field.help_text}}</p>
+            {% endif %}
+
+            </div>
+
+
+            {% elif field.html_name == 'date_of_birth' %}
+
+            <div class="input-field col s12 ">
+              <input type="date" name="{{field.html_name}}" id="{{field.id_for_label}}" class='datepicker'>
+              <label for="{{field.id_for_label}}">Date of birth</label>
+              {% if field.help_text %}
+              <p class='grey-text'>{{field.help_text}}</p>
+              {% endif %}
+
+              {% if field.errors %}
+              {% for error in field.errors %}
+              <p class='red-text'>{{error}}</p>
+              {% endfor %}
+              {% endif %}
+
+            </div>
+
+
+            {% elif field.html_name == 'part_of' %}
+
+                <div class="input-field col s12">
+                  <p>Add to class:</p>
+
+                    {{field}}
+
+                </div>
+
+            {% elif field.html_name == 'is_parent' or field.html_name == 'is_student' or field.html_name == 'is_teacher' or field.html_name == 'is_admin' %}
+
+            <!-- <input type="{{field.field.widget.input_type}}" id="{{field.id_for_label}}" />
+            <label for="{{field.id_for_label}}">{{field.html_name}}</label> -->
+
+            <p>
+              <input type="{{field.field.widget.input_type}}" name="{{field.html_name}}" id="{{field.id_for_label}}" class='filled-in checkbox-blue'/>
+              <label for="{{field.id_for_label}}">{{field.html_name}}</label>
+            </p>
+
+
+            {% elif field.html_name == "image" %}
+
+            <div class="file-field input-field">
+
+              <div class="btn">
+                <span class="white-text">IMAGE</span>
+                <input type="file" name="{{field.html_name}}">
+              </div>
+
+              <div class="file-path-wrapper">
+                <input type="text" class='file-path validate'>
+              </div>
+
+
+              {% if field.help_text %}
+              <p class='grey-text'>{{field.help_text}}</p>
+              {% endif %}
+
+              {% if field.errors %}
+              {% for error in field.errors %}
+              <p class='red-text'>{{error}}</p>
+              {% endfor %}
+              {% endif %}
+
+            </div>
+
+
+            {% else %}
+            <div class="input-field col s12 ">
+              <input type="{{field.field.widget.input_type}}" name="{{field.html_name}}" id="{{field.id_for_label}}" class='validate'>
+              <label for="{{field.id_for_label}}">{{ field.html_name }}</label>
+              {% if field.help_text %}
+              <p class='grey-text'>{{field.help_text}}</p>
+              {% endif %}
+
+              {% if field.errors %}
+              {% for error in field.errors %}
+              <p class='red-text'>{{error}}</p>
+              {% endfor %}
+              {% endif %}
+
+            </div>
+
+            {% endif %}
+
+
+        </div>
+      {% endfor %}
+      <button type="submit" class="btn waves-effect waves-light teal lighten-3 white-text">REGISTER</button>
+
+    </form>
+  </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block customjs %} {% endblock customjs %}

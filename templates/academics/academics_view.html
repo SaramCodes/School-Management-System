@@ -1,0 +1,62 @@
+{% extends 'index.html' %}
+
+{% block title %}Academics{% endblock title %}
+
+{% block customcss %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/userrs.css' %}">
+<link rel="stylesheet" href="{% static 'css/academics/subjects/subject_list.css' %}">
+<link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet">
+{% endblock customcss %}
+
+
+{% block content %}
+
+
+  <div class="register-bg">
+    <div class="classes-boi hoverable grey-text text-darken-2">
+      {% if messages %}
+
+      <ul class="messages">
+          {% for message in messages %}
+          <li class="center-align green-text">{{message}}</li>
+          <div class="progress white">
+          <div class="indeterminate green darken-4"></div>
+          </div>
+
+          {% endfor %}
+      </ul>
+
+
+      {% endif %}
+
+      <h2 class="my-heada">ACADEMICS</h2>
+
+      <div class="my-text">
+        <p>Below are the links related to everything academic related such as adding subjects, grades or marking attendence etc... Click on one of the links to be taken to their detailed page an look for further instructions there.</p> <hr>
+      </div>
+
+      <div class="row">
+
+      <div class="col xl16 l12 m12 s12">
+
+        <div class="my-list">
+
+          <h4><a href="{% url 'subject-list' %}">Subjects</a></h4>
+          <h4><a href="{% url 'semester-view' %}">Grades</a></h4>
+          <h4><a href="#">Attendence</a></h4>
+        </div>
+
+      </div>
+
+      </div>
+
+
+  </div>
+  </div>
+
+
+{% endblock content %}
+
+{% block customjs %}
+{% endblock customjs %}

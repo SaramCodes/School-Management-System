@@ -1,0 +1,66 @@
+{% extends 'index.html' %}
+
+{% block title %}Add A New Class{% endblock title %}
+
+{% block customcss %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/student-register.css' %}">
+{% endblock customcss %}
+
+
+{% block content %}
+<div class="register-bg">
+  <div class='my_container hoverable'>
+  <div class="row">
+  <form method="POST"> {% csrf_token %}
+    <h2 class="headed teal-text text-lighten-2">CREATE A NEW CLASS</h2>
+    {% for field in form %}
+
+    {% if field.html_name == "name" %}
+    <div class="input-field col s12 ">
+      <input type="{{field.field.widget.input_type}}" name="{{field.html_name}}" id="{{field.id_for_label}}" class='validate'>
+      <label for="{{field.id_for_label}}">{{ field.html_name }}</label>
+      {% if field.help_text %}
+      <p class='grey-text'>{{field.help_text}}</p>
+      {% endif %}
+
+      {% if field.errors %}
+      {% for error in field.errors %}
+      <p class='red-text'>{{error}}</p>
+      {% endfor %}
+      {% endif %}
+
+    </div>
+
+    <br>
+    <br>
+
+    {% else %}
+    <div class="input-field col s12">
+    {{field}}
+
+    {% if field.help_text %}
+    <p class='grey-text'>{{field.help_text}}</p>
+    {% endif %}
+
+    {% if field.errors %}
+    {% for error in field.errors %}
+    <p class='red-text'>{{error}}</p>
+    {% endfor %}
+    {% endif %}
+    <br>
+    </div>
+    {% endif %}
+
+    {% endfor %}
+    <br>
+    <button type="submit" class="btn waves-effect waves-light">CREATE</button>
+  </form>
+
+</div>
+</div>
+</div>
+
+{% endblock content %}
+
+{% block customjs %} {% endblock customjs %}

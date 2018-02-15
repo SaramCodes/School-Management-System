@@ -1,0 +1,97 @@
+{% extends 'index.html' %}
+
+{% block title %}{{klass.name}} Details{% endblock title %}
+
+{% block customcss %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/userrs.css' %}">
+<link rel="stylesheet" href="{% static 'css/academics/subjects/subject_list.css' %}">
+<link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet">
+{% endblock customcss %}
+
+
+{% block content %}
+
+
+  <div class="register-bg">
+    <div class="classes-boi hoverable grey-text text-darken-2">
+      {% if messages %}
+
+      <ul class="messages">
+        {% for m in messages %}
+
+        {% if m.tags == 'success' %}
+        <div>
+        <p class="center-align green-text pepa">{{m}}</p>
+        </div>
+        <div class="progress white">
+        <div class="indeterminate green lighten-3"></div>
+        </div>
+
+        {% elif m.tags == 'warning' %}
+        <div>
+        <p class="center-align yellow-text text-darken-3 pepa">{{m}}</p>
+        </div>
+        <div class="progress white">
+        <div class="indeterminate yellow lighten-1"></div>
+        </div>
+
+        {% endif %}
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+      <h2 class="my-heada">{{klass.name}}</h2>
+
+      <div class="row">
+
+
+        <div class="col xl16 l12 m12 s12">
+
+          <div class="my-list-klasses">
+              {% if teacher %}
+
+              {% for teach in teacher %}
+
+                <h4>Teacher: <a href="{{teach.get_absolute_url}}" class="my-link">{{teach.first_name}} {{teach.last_name}}</a></h4>
+
+              {% endfor %}
+
+
+              {% else %}
+
+              <h3>No teacher added yet</h3>
+              {% endif %}
+              <br><br>
+          </div>
+        </div
+
+
+
+      <div class="col xl16 l12 m12 s12">
+
+        <div class="my-text"><p>Total Students: {{total_num}}</p></div>
+
+        <div class="my-list">
+          {% for student in students %}
+
+
+          <p><a href="{{student.get_absolute_url}}">{{student.first_name}} {{student.last_name}}</a></p>
+
+
+          {% endfor %}
+        </div>
+
+      </div>
+
+      </div>
+
+
+  </div>
+  </div>
+
+
+{% endblock content %}
+
+{% block customjs %}
+{% endblock customjs %}

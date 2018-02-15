@@ -1,0 +1,45 @@
+{% extends 'index.html' %}
+
+{% block title %}Update Class{% endblock title %}
+
+{% block customcss %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/student-register.css' %}">
+{% endblock customcss %}
+
+
+{% block content %}
+<div class="register-bg">
+  <div class='my_container hoverable'>
+  <div class="row">
+  <form method="POST"> {% csrf_token %}
+    {% for field in form %}
+
+    <h3 class="headed">CHANGE NAME OF CLASS</h3>
+    <p class="my-text"><span class="red-text">Note: Due to some limitations, you cannot add or remove teachers/students from here. Follow the steps below to do the necesssary changes.</span> <br> <br> 1. To add more users to alreay made classes, you can add them while creating a user, or by going to a user's update page and assigning them to the class. <br> <br> 2. Only one teacher is allowed in a class. To remove and add another teacher, first remove the teacher by going to their update page and then add the new user as stated in point 1. <br> <br> 3. In short, No changes can be made directly to the class once it has been made, you will have to make the necassary changes of changing/adding users by going to their respective update pages. Therefore it should be noted that while creating a class you should keep everything in check. Otherwise you will have to do things manually.</p>
+    <div class="input-field col s12 ">
+      <input type="{{field.field.widget.input_type}}" name="{{field.html_name}}" id="{{field.id_for_label}}" value="{{field.value}}" class='validate'>
+      <label for="{{field.id_for_label}}">{{ field.html_name }}</label>
+      {% if field.help_text %}
+      <p class='grey-text'>{{field.help_text}}</p>
+      {% endif %}
+
+      {% if field.errors %}
+      {% for error in field.errors %}
+      <p class='red-text'>{{error}}</p>
+      {% endfor %}
+      {% endif %}
+
+    </div>
+    {% endfor %}
+    <br>
+    <button type="submit" class="btn waves-effect waves-light">UPDATE</button>
+  </form>
+
+</div>
+</div>
+</div>
+
+{% endblock content %}
+
+{% block customjs %} {% endblock customjs %}

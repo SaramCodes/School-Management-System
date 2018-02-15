@@ -1,0 +1,102 @@
+.register-bg{
+  padding: 3em 0em;
+  margin-top: 50px;
+}
+
+.my_container{
+  width:70%;
+  margin: auto;
+  background-color: rgba(237, 237, 237, 1);
+  padding:2em;
+}
+
+.imaga{
+  margin-top:5vh;
+}
+
+.inline-icon {
+   vertical-align: bottom;
+   font-size: 18px !important;
+}
+
+.headed{
+  font-family:lato;
+  font-weight: 1000;
+  text-align: center;
+  color:#009688;
+}
+
+.my_container{
+  font-family:lato;
+  font-weight: 1000;
+  text-align: center;
+}
+
+.my_container p{
+  line-height: 2.1;
+  word-spacing: 1.5px;
+  text-align: left;
+  width:70%;
+  margin:auto;
+}
+
+.desig{
+  font-size:110%;
+}
+
+.heda{
+  font-family:lato;
+  font-weight: 1000;
+  /* text-align: left; */
+}
+
+.messages .pepa{
+  text-align: center !important;
+}
+
+
+@media(max-width:1160px){
+
+  .my_container p{
+    font-size:1em;
+    width:90%;
+  }
+
+  .headed{
+    font-size:2.4em !important;
+
+  }
+
+  .heda{
+    font-size:1.3em !important;
+  }
+}
+
+@media(max-width:800px){
+
+  .my_container p{
+    font-size:0.8em;
+    width:100%;
+  }
+
+}
+
+
+@media(max-width:600px){
+
+  .my_container p{
+    font-size:0.8em;
+    width:80%;
+    text-align: center;
+  }
+
+  .headed{
+    font-size:2.0em !important;
+  }
+}
+
+@media(max-width:500px){
+  .headed{
+    font-size: 1.8em !important;
+  }
+}

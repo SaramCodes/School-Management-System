@@ -1,0 +1,146 @@
+{% extends 'index.html' %}
+
+{% block title %}Grades | Grading {{user.first_name}}{% endblock title %}
+
+{% block customcss %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/student-register.css' %}">
+{% endblock customcss %}
+
+
+{% block content %}
+<div class="register-bg">
+  <div class='my_container hoverable'>
+  <div class="row">
+  <form method="POST"> {% csrf_token %}
+    <h2 class="headed teal-text text-lighten-2">Add Grade For {{user.first_name}}</h2>
+
+    {% if messages %}
+
+    <ul class="messages">
+      {% for m in messages %}
+
+      {% if m.tags == 'success' %}
+      <div>
+      <p class="center-align green-text">{{m}}</p>
+      </div>
+      <div class="progress white">
+      <div class="indeterminate green lighten-3"></div>
+      </div>
+
+      {% elif m.tags == 'error' %}
+      <div>
+      <p class="center-align red-text text-darken-2">{{m}}</p>
+      </div>
+      <div class="progress white">
+      <div class="indeterminate red lighten-2"></div>
+      </div>
+
+      {% endif %}
+      {% endfor %}
+    </ul>
+
+
+    {% endif %}
+
+
+    {% if not klass.subjects.all %}
+
+      <p class="red-text">Please not that there are no subjects registered in class {{user.part_of.name}} at the moment to which this student belongs. Therefore, you will be unable to grade this student untill a subject is added. Contact the admin if you see this message.</p>
+
+    {% else %}
+
+
+    {% for field in form %}
+
+    {% if field.html_name == "score" %}
+    <div class="input-field col s12 ">
+      <input type="{{field.field.widget.input_type}}" name="{{field.html_name}}" id="{{field.id_for_label}}" class='validate'>
+      <label for="{{field.id_for_label}}">{{ field.html_name }}</label>
+      {% if field.help_text %}
+      <p class='grey-text'>{{field.help_text}}</p>
+      {% endif %}
+
+      {% if field.errors %}
+      {% for error in field.errors %}
+      <p class='red-text'>{{error}}</p>
+      {% endfor %}
+      {% endif %}
+
+    </div>
+
+    <br>
+    <br>
+
+
+    {% elif field.html_name == "period_start" %}
+    <div class="input-field col s12 ">
+      <input type="date" name="{{field.html_name}}" id="{{field.id_for_label}}" class='datepicker'>
+      <label for="{{field.id_for_label}}">Select the beginning date</label>
+      {% if field.help_text %}
+      <p class='grey-text'>{{field.help_text}}</p>
+      {% endif %}
+
+      {% if field.errors %}
+      {% for error in field.errors %}
+      <p class='red-text'>{{error}}</p>
+      {% endfor %}
+      {% endif %}
+
+    </div>
+
+    <br>
+    <br>
+
+    {% elif field.html_name == "period_end" %}
+    <div class="input-field col s12 ">
+      <input type="date" name="{{field.html_name}}" id="{{field.id_for_label}}" class='datepicker'>
+      <label for="{{field.id_for_label}}">Select the ending date</label>
+      {% if field.help_text %}
+      <p class='grey-text'>{{field.help_text}}</p>
+      {% endif %}
+
+      {% if field.errors %}
+      {% for error in field.errors %}
+      <p class='red-text'>{{error}}</p>
+      {% endfor %}
+      {% endif %}
+
+    </div>
+
+    <br>
+    <br>
+
+
+    {% else %}
+    <div class="input-field col s12">
+    {{field}}
+
+    {% if field.help_text %}
+    <p class='grey-text'>{{field.help_text}}</p>
+    {% endif %}
+
+    {% if field.errors %}
+    {% for error in field.errors %}
+    <p class='red-text'>{{error}}</p>
+    {% endfor %}
+    {% endif %}
+    <br>
+    </div>
+    {% endif %}
+
+    {% endfor %}
+    <br>
+    <button type="submit" class="btn waves-effect waves-light">CREATE</button>
+    {% endif %}
+  </form>
+
+</div>
+</div>
+</div>
+
+{% endblock content %}
+
+{% block customjs %}
+  <script src="{% static 'js/grade/grad.js' %}"></script>
+{% endblock customjs %}

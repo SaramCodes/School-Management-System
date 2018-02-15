@@ -1,0 +1,53 @@
+{% extends 'index.html' %}
+
+{% block title %}Manage Users{% endblock title %}
+
+{% block customcss %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/userrs.css' %}">
+{% endblock customcss %}
+
+{% block headercss %}
+  <link rel="stylesheet" href="{% static 'css/header.css'%}">
+{% endblock headercss %}
+
+{% block headernavs %}
+<li><a href="{% url 'home' %}" class="waves-effect waves-teal">HOME</a></li>
+<li><a href="{% url 'user_creation_view' %}" class="waves-effect waves-teal">ADD USERS</a></li>
+<li><a href="{% url 'user-list' %}" class="waves-effect waves-teal">ALL USERS</a></li>
+
+<a class='dropdown-button btn my-dropdown teal lighten-2' data-beloworigin="true" href='#' data-activates='dropdown1'>Hi {{request.user.first_name}}! <i class="medium material-icons">arrow_drop_down</i></a>
+
+<ul id='dropdown1' class='dropdown-content'>
+ <li><a href="{{request.user.get_absolute_url}}">Profile</a></li>
+ <li><a href="{% url 'change_password' %}">Change Password</a></li>
+ <li><a href="{% url 'logout_view' %}">Logout</a></li>
+</ul>
+{% endblock headernavs %}
+
+
+{% block side-navs %}
+<li><a href="{% url 'home' %}">HOME</a></li>
+<li><a href="{% url 'user_creation_view' %}">ADD USERS</a></li>
+<li><a href="{% url 'user-list' %}">ALL USERS</a></li>
+<li><a href="{{request.user.get_absolute_url}}" class="waves-effect waves-red">PROFILE</a></li>
+<li><a href="{% url 'change_password' %}" class="waves-effect waves-red">CHANGE PASSWORD</a></li>
+<li><a href="{% url 'logout_view' %}" class="waves-effect waves-red">LOGOUT</a></li>
+{% endblock side-navs %}
+
+
+
+{% block content %}
+
+
+  <div class="register-bg">
+    <div class="classes-boi hoverable grey-text text-darken-2">
+      <h3>GUIDE</h3>
+      <p>You are in the <span class='span-boi orange-text'>USERS</span> section right now. As an <span class="span-boi orange-text">Admin</span>, you can add, delete and update users. Use the <span class="span-boi orange-text">Navigation Bar</span> above to find your way to the necassary links. If you want to go back and work on something else like grades or classes, please select the <span class="span-boi orange-text">HOME</span> link in the navbar above which will take you there. All the links just stated will be available there.</p>
+    </div>
+  </div>
+
+{% endblock content %}
+
+{% block customjs %}
+{% endblock customjs %}

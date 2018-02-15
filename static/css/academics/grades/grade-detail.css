@@ -1,0 +1,106 @@
+.register-bg{
+  padding: 3em 0em;
+  margin-top: 50px;
+}
+
+.glow{
+  color: #009688;
+  transition-duration: 0.3s;
+}
+
+.my-grade-detail{
+  color: #ff8a80;
+  transition-duration: 0.3s;
+  text-align: center;
+}
+
+.go-back{
+  margin-top: 30px;
+  margin-bottom: 30px;
+  text-align: center !important;
+}
+
+.my-grade-detail:hover{
+  border-bottom: solid 2px #ff8a80;
+  color:#009688 ;
+}
+
+.ma-table{
+  margin-top: 10vh;
+}
+
+
+.glow:hover{
+  color:#ff8a80;
+}
+
+.report-head{
+  text-align: center;
+  
+}
+
+.classes-boi{
+  border-radius: 5px;
+  margin-top:10vh;
+  width:70%;
+  margin: auto;
+  background-color: #e5e5e5 ;
+  padding:2em;
+}
+
+
+.classes-boi h3, .classes-boi h4, .classes-boi h2, .classes-boi p, .classes-boi a{
+  font-family: lato;
+  font-weight:1000;
+}
+
+
+@media(max-width:800px){
+  .classes-boi{
+    width:80%;
+  }
+
+  .classes-boi h2{
+    font-size: 2.3em !important;
+  }
+
+  .classes-boi h3{
+    font-size: 2.1em !important;
+  }
+
+  .classes-boi h4{
+    font-size: 1.8em !important;
+  }
+
+  .classes-boi p{
+    font-size:0.9em;
+  }
+
+}
+
+@media(max-width:600px){
+
+  table{
+    font-size:0.9em !important
+  }
+
+  .ma-table{
+    margin-top: 20px;
+  }
+
+    .classes-boi h2{
+      font-size: 1.5em !important;
+    }
+
+    .classes-boi h3{
+      font-size: 1.5em !important;
+    }
+
+    .classes-boi h4{
+      font-size: 1.4em !important;
+    }
+
+    .classes-boi p{
+      font-size:0.8em;
+    }
+}

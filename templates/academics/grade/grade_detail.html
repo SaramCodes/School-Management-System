@@ -1,0 +1,119 @@
+{% extends 'index.html' %}
+
+{% block title %}Grades | {{student.first_name}}{% endblock title %}
+
+{% block customcss %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/academics/grades/grade-detail.css' %}">
+<link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet">
+{% endblock customcss %}
+
+
+{% block content %}
+
+
+  <div class="register-bg">
+    <div class="classes-boi hoverable grey-text text-darken-2">
+
+
+
+      <h2 class="report-head teal-text">Grade Report</h2>
+
+
+      <div class="row">
+        <div class="col s12">
+
+          <p>Student: <a href="{{student.get_absolute_url}}" class="glow">{{student.first_name}} {{student.last_name}}</a></p>
+
+        </div>
+
+        <div class="col s12">
+
+          <p>Class: <a href="{{student.get_absolute_url}}" class="glow">{{student.part_of}}</a></p>
+
+        </div>
+
+        <div class="col s12">
+
+          <p>Exams Name: <span class="teal-text">{{semester.name}}</span></p>
+
+        </div>
+
+
+      </div>
+
+      <p class="my-grade-detail">{{semester.period_start}} - {{semester.period_end}}</p>
+      {% if grades %}
+      <table class="responsive-table highlight ma-table">
+        <thead>
+          <tr>
+              <th>Subject</th>
+              <th>Obtained Marks</th>
+              <th>Total Marks</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for grade in grades %}
+
+          <tr>
+            <td>{{grade.subject.name}}</td>
+            <td>{{grade.score}}</td>
+            <td>100</td>
+          </tr>
+
+        {% endfor %}
+        </tbody>
+      </table>
+
+        <br><br><br>
+        {% if request.user.is_admin %}
+      <div class="center">
+        <a href="/academics/grades/{{semester.id}}/semester/{{student.part_of.id}}" class="btn waves-red boto">Go Back</a>
+      </div>
+
+        {% elif request.user.is_teacher %}
+
+        <div class="center">
+          <a href="/academics/grade/{{semester.id}}/semester/{{student.part_of.id}}" class="btn waves-red boto">Go Back</a>
+        </div>
+
+
+        {% endif %}
+      {% else %}
+      <br>
+      <div class="center">
+      <p class="red-text text-lighten-1">No record found!</p>
+
+      <div class="progress white">
+      <div class="indeterminate red lighten-2"></div>
+      </div> <br>
+
+      <p>Grade the student for the period of {{semester.period_start}} - {{semester.period_end}} first and then their grades will start showing on this page</p>
+    </div>
+
+    <br><br><br>
+    {% if request.user.is_admin %}
+  <div class="center">
+    <a href="/academics/grades/{{semester.id}}/semester/{{student.part_of.id}}" class="btn waves-red boto">Go Back</a>
+  </div>
+
+    {% elif request.user.is_teacher %}
+
+    <div class="center">
+      <a href="/academics/grade/{{semester.id}}/semester/{{student.part_of.id}}" class="btn waves-red boto">Go Back</a>
+    </div>
+
+
+    {% endif %}
+      {% endif %}
+
+
+
+  </div>
+  </div>
+
+
+{% endblock content %}
+
+{% block customjs %}
+{% endblock customjs %}

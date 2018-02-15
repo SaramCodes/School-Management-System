@@ -1,0 +1,75 @@
+{% extends 'index.html' %}
+
+{% block title %}Subject | {{subject.name}} details{% endblock title %}
+
+{% block customcss %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/userrs.css' %}">
+<link rel="stylesheet" href="{% static 'css/academics/subjects/subject_list.css' %}">
+<link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet">
+{% endblock customcss %}
+
+
+{% block content %}
+
+
+  <div class="register-bg">
+    <div class="classes-boi hoverable grey-text text-darken-2">
+      {% if messages %}
+
+      <ul class="messages">
+          {% for message in messages %}
+          <li class="center-align green-text text-darken-2">{{message}}</li>
+          <div class="progress white">
+          <div class="indeterminate green lighten-2"></div>
+          </div>
+
+          {% endfor %}
+      </ul>
+
+
+      {% endif %}
+
+      <h2 class="my-heada">{{subject.name}}</h2>
+
+
+      {% if subject.klass.all  %}
+      <div class="my-text">
+        <p>This subject is being taught in the following classes at the moment: </p> <hr>
+      </div>
+
+      <div class="row">
+
+      <div class="col xl16 l12 m12 s12">
+
+        <div class="my-list">
+
+          {% for klass in subject.klass.all %}
+          <h4><a href="{{klass.get_absolute_url}}">{{klass.name}}</a></h4>
+          {% endfor %}
+        </div>
+
+      </div>
+
+      </div>
+      {% else %}
+
+      <div class="my-text">
+        <p>This subject isn't being taught in any classes at the moment... </p> <hr>
+      </div>
+
+      {% endif %}
+
+      <a href="{{subject.get_delete_url}}" class="btn red waves-teal waves-effect">DELETE</a> <br> <br>
+        <a href="{{subject.get_update_url}}" class="btn blue waves-teal waves-effect">UPDATE</a> <br> <br>
+      <a href="{% url 'subject-list' %}" class="btn teal waves-red waves-effect">Go Back</a>
+
+
+  </div>
+  </div>
+
+
+{% endblock content %}
+
+{% block customjs %}
+{% endblock customjs %}
