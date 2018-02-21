@@ -159,16 +159,15 @@ def user_detail(request, id):
         raise Http404
 
     user = get_object_or_404(User, id=id)
-    if request.user.is_admin or request.user == user:
-        user = get_object_or_404(User, id=id)
-        template_name = 'accounts/user-detail.html'
-        context = {
-            "user": user
-        }
-        return render(request, template_name, context)
 
-    else:
-        raise Http404
+    user = get_object_or_404(User, id=id)
+    template_name = 'accounts/user-detail.html'
+    context = {
+        "user": user
+    }
+    return render(request, template_name, context)
+
+    
 
 
 def user_delete(request, id):

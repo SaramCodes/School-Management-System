@@ -31,6 +31,8 @@ First use a virtual environment and install everything listed in requirements.tx
 
 If however you wish to start fresh, just delete the db.sqlite3 file. Then run manage.py migrate and you'll be on your way. However, please note that the program will not work if you delete the migraions. Don't delete the migrations (you can delete the ones ending with .pyc though). I'm sure there's a workaround but seeing my models.py files and going through the trouble of changing them is kinda too scary atm. T_T
 
+p.s This ps is just for my reference don't worry about it.
+
 
 
 Feel free to use it any way you like! :D
