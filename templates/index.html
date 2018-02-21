@@ -43,6 +43,7 @@
              </ul>
 
               {% elif request.user.is_teacher %}
+              <li><a href="{{request.user.part_of.get_absolute_url}}" class="waves-effect waves-teal">MY CLASS</a></li>
               <li><a href="{% url 'semester-view' %}" class="waves-effect waves-teal">GRADE</a></li>
               <li><a href="#" class="waves-effect waves-teal">MARK ATTENDENCE</a></li>
               <li><a href="#" class="waves-effect waves-teal">NOTICE BOARD</a></li>
@@ -92,17 +93,18 @@
               <li><a href="#" class="waves-effect waves-red">My Grades</a></li>
               <li><a href="#" class="waves-effect waves-red">Notice Board</a></li>
               <li><a href="#" class="waves-effect waves-red">Assignments</a></li>
-              <li><a href="{{request.user.get_absolute_url}}" class="waves-effect waves-red">PROFILE</a></li>
-              <li><a href="{% url 'change_password' %}" class="waves-effect waves-red">CHANGE PASSWORD</a></li>
-              <li><a href="{% url 'logout_view' %}" class="waves-effect waves-red">LOGOUT</a></li>
+              <li><a href="{{request.user.get_absolute_url}}" class="waves-effect waves-red">Profile</a></li>
+              <li><a href="{% url 'change_password' %}" class="waves-effect waves-red">Change Password</a></li>
+              <li><a href="{% url 'logout_view' %}" class="waves-effect waves-red">Logout</a></li>
 
               {% elif request.user.is_teacher %}
+              <li><a href="{{request.user.part_of.get_absolute_url}}" class="waves-effect waves-red">My Class</a></li>
               <li><a href="{% url 'semester-view' %}" class="waves-effect waves-red">Grades</a></li>
               <li><a href="#" class="waves-effect waves-red">Mark Attendence</a></li>
               <li><a href="#" class="waves-effect waves-red">Notice Board</a></li>
-              <li><a href="{{request.user.get_absolute_url}}" class="waves-effect waves-red">PROFILE</a></li>
-              <li><a href="{% url 'change_password' %}" class="waves-effect waves-red">CHANGE PASSWORD</a></li>
-              <li><a href="{% url 'logout_view' %}" class="waves-effect waves-red">LOGOUT</a></li>
+              <li><a href="{{request.user.get_absolute_url}}" class="waves-effect waves-red">Profile</a></li>
+              <li><a href="{% url 'change_password' %}" class="waves-effect waves-red">Change Password</a></li>
+              <li><a href="{% url 'logout_view' %}" class="waves-effect waves-red">Logout</a></li>
 
               {% elif request.user.is_admin %}
               <li><a href="{% url 'user_view' %}" class="waves-effect waves-red">USERS</a></li>

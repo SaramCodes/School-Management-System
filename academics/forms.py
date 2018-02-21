@@ -1,5 +1,5 @@
 from django import forms
-from .models import Subject, Grade
+from .models import Subject, Grade, Semester
 from klass.models import Klasses
 from django.utils.translation import ugettext, ugettext_lazy as _
 from .models import validate_is_lt_hundred
@@ -25,3 +25,9 @@ class GradeForm(forms.ModelForm):
     class Meta:
         model = Grade
         fields = ("subject", "score",)
+
+class SemesterForm(forms.ModelForm):
+    name = forms.CharField(max_length=225, required=True)
+    class Meta:
+        model=Semester
+        fields = ("name", "period_start", "period_end")

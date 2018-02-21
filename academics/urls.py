@@ -10,6 +10,7 @@ from .views import (
     #subject views <--end-->
     #grade views
     semester_view,
+    semester_create_view,
     grade_klass_list_view,
     grade_student_list_view,
     grade_create_view,
@@ -36,6 +37,7 @@ urlpatterns = [
     # I am beginning the grades view by listing the semesters first.
     #So the first url will be of semester model.
     url(r'^grades/semester/$', semester_view, name='semester-view'),
+    url(r'^semester/create$', semester_create_view, name='semester-create'),
     url(r'^grades/semester/(?P<id>[\w-]+)/$', grade_klass_list_view, name='grade-klass-list'),
 
     url(r'^grades/(?P<semester_id>(\d+))/semester/(?P<klass_id>(\d+))$', grade_student_list_view, name='grade-klass-student-list'),
@@ -53,9 +55,3 @@ urlpatterns = [
 
 
 ]
-
-
-    #
-    # url(r'^grades$', grade_klass_list_view, name='grade-klass-list'),
-    # url(r'^grades/class/(?P<id>[\w-]+)/$', grade_student_list_view, name='grade-student-list'),
-    # url(r'^grades/(?P<id>[\w-]+)/create$', grade_create_view, name='grade-create')

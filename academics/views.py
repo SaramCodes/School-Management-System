@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect, Http404
 from django.contrib import messages
 # My imports
 from accounts.models import User
-from .forms import SubjectForm, GradeForm
+from .forms import SubjectForm, GradeForm, SemesterForm
 from .models import Subject, Grade, Semester
 from klass.models import Klasses
 
@@ -101,6 +101,28 @@ def semester_view(request):
     template_name = "academics/semester/semester_list.html"
     context = {"semester":semester,}
     return render(request, template_name, context)
+
+
+
+def semester_create_view(request):
+    if request.user.is_authenticated and request.user.is_admin:
+        if request.method == "POST":
+            form = SemesterForm(request.POST)
+            if form.is_valid():
+                semester_boi = form.save(commit=False)
+                semester_boi.save()
+                messages.success(request, 'Semester Created SucessFully!!')
+                return HttpResponseRedirect(reverse('semester-view'))
+            else:
+                messages.error(request, 'Correct the errors below')
+
+        else:
+            form = SemesterForm()
+        return render(request, 'academics/semester/semester_create_view.html', {'form': form})
+    else:
+        raise Http404
+
+
 
 
 def grade_klass_list_view(request, id):
