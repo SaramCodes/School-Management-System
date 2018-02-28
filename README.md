@@ -28,7 +28,7 @@ I have to make the templates for the student. All things except this has been do
 
 First use a virtual environment and install everything listed in requirements.txt. The admin email is : "admin@company.com" and the password is: "aaaa1111".
 
-If however you wish to start fresh, just delete the db.sqlite3 file. Then run manage.py migrate and you'll be on your way. However, *please note that the program will not work if you delete the migraions. Don't delete the migrations (you can delete the ones ending with .pyc though). I'm sure there's a workaround but seeing my models.py files and going through the trouble of changing them is kinda too scary atm. T_T ಥ⌣ಥ இ_இ*
+If however you wish to start fresh, just delete the db.sqlite3 file. Then run manage.py migrate and you'll be on your way. However, **please note that the program will not work if you delete the migraions. Don't delete the migrations (you can delete the ones ending with .pyc though). I'm sure there's a workaround but seeing my models.py files and going through the trouble of changing them is kinda too scary atm. T_T ಥ⌣ಥ இ_இ**
 
 
 
