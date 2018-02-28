@@ -70,7 +70,13 @@
 
         </div>
         <div class="col offset-s3 s6">
-          <a href="{% url 'academics_view' %}" class="btn waves-red boto">Go Back</a>
+          {% if request.user.is_admin %}
+          <a href="{% url 'semester-create' %}" class="btn waves-effect waves-teal grey lighten-3 teal-text dam">ADD SEMESTER</a>
+          <a href="{% url 'academics_view' %}" class="btn waves-red boto">GO BACK</a>
+          {% else %}
+          <a href="{% url 'home' %}" class="btn waves-red boto">Go Back</a>
+          {% endif %}
+
         </div>
 
       </div>

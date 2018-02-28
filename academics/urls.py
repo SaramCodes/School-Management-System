@@ -18,7 +18,12 @@ from .views import (
     #for teachers
     grade_view_for_teacher,
     grade_detail_view_teacher,
-    grade_create_view_teacher
+    grade_create_view_teacher,
+    # for rollcals
+    create_roll,
+    rolls_class,
+    rolls_students,
+    rolls_detail
     )
 
 
@@ -52,6 +57,13 @@ urlpatterns = [
     url(r'^grades/(?P<semester_id>(\d+))/student/(?P<student_id>(\d+))/create/$', grade_create_view, name='grade-create'),
 
     url(r'^grade/(?P<semester_id>(\d+))/student/(?P<student_id>(\d+))/create/$', grade_create_view_teacher, name='grade-create-teacher'),
+
+    #Below are the urls of the rolls,
+
+    url(r'^attendences$', rolls_class, name='rolls-class'),
+    url(r'^attendence/klass/(?P<id>[\w-]+)/$', rolls_students, name='rolls-students'),
+    url(r'^attendence/(?P<id>[\w-]+)/$', rolls_detail, name='rolls-detail'),
+    url(r'^attendence/add/(?P<id>[\w-]+)/$', create_roll, name='create-roll'),
 
 
 ]

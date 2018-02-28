@@ -11,7 +11,7 @@ def validate_is_lt_hundred(value):
 
 # Create your models here.
 class RollCall(models.Model):
-    student = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True,on_delete=models.CASCADE)
+    student = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True,on_delete=models.CASCADE,related_name="rollcall")
     present = models.BooleanField(default=False, blank=False, null=False)
     date = models.DateField()
 

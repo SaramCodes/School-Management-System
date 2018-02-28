@@ -45,7 +45,7 @@
               {% elif request.user.is_teacher %}
               <li><a href="{{request.user.part_of.get_absolute_url}}" class="waves-effect waves-teal">MY CLASS</a></li>
               <li><a href="{% url 'semester-view' %}" class="waves-effect waves-teal">GRADE</a></li>
-              <li><a href="#" class="waves-effect waves-teal">MARK ATTENDENCE</a></li>
+              <li><a href="/academics/attendence/klass/{{request.user.part_of.id}}" class="waves-effect waves-teal">MARK ATTENDENCE</a></li>
               <li><a href="#" class="waves-effect waves-teal">NOTICE BOARD</a></li>
               <a class='dropdown-button btn my-dropdown teal lighten-2' data-beloworigin="true" href='#' data-activates='dropdown1'>Hi {{request.user.first_name}}! <i class="medium material-icons">arrow_drop_down</i></a>
 
@@ -72,9 +72,7 @@
               {% endif %}
 
             {% else %}
-            <li><a href="#" class="waves-effect waves-teal">OVERVIEW</a></li>
-            <li><a href="#" class="waves-effect waves-teal">CONTACT</a></li>
-            <li><a href="#" class="waves-effect waves-teal">ABOUT</a></li>
+
             <li><a href="{% url 'login_view' %}" class="waves-effect waves-teal"><span>LOGIN</span></a></li>
 
             {% endif %}
@@ -100,7 +98,7 @@
               {% elif request.user.is_teacher %}
               <li><a href="{{request.user.part_of.get_absolute_url}}" class="waves-effect waves-red">My Class</a></li>
               <li><a href="{% url 'semester-view' %}" class="waves-effect waves-red">Grades</a></li>
-              <li><a href="#" class="waves-effect waves-red">Mark Attendence</a></li>
+              <li><a href="/academics/attendence/klass/{{request.user.part_of.id}}" class="waves-effect waves-red">Mark Attendence</a></li>
               <li><a href="#" class="waves-effect waves-red">Notice Board</a></li>
               <li><a href="{{request.user.get_absolute_url}}" class="waves-effect waves-red">Profile</a></li>
               <li><a href="{% url 'change_password' %}" class="waves-effect waves-red">Change Password</a></li>
@@ -120,9 +118,7 @@
               {% endif %}
 
             {% else %}
-            <li><a href="#" class="waves-effect waves-red">OVERVIEW</a></li>
-            <li><a href="#" class="waves-effect waves-red">CONTACT</a></li>
-            <li><a href="#" class="waves-effect waves-red">ABOUT</a></li>
+
             <li><a href="{% url 'login_view' %}" class="waves-effect waves-red">LOGIN</a></li>
 
             {% endif %}

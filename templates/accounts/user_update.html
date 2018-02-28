@@ -97,7 +97,7 @@
             {% elif field.html_name == 'date_of_birth' %}
 
             <div class="input-field col s12 ">
-              <input type="date" name="{{field.html_name}}" id="{{field.id_for_label}}" class='datepicker' value="{{field.value}}">
+              <input type="date" name="{{field.html_name}}" value="{{field.value}}" id="{{field.id_for_label}}" class='datepicker' >
               <label for="{{field.id_for_label}}">Date of birth</label>
               {% if field.help_text %}
               <p class='grey-text'>{{field.help_text}}</p>

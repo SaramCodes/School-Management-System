@@ -1,5 +1,5 @@
 from django import forms
-from .models import Subject, Grade, Semester
+from .models import Subject, Grade, Semester, RollCall
 from klass.models import Klasses
 from django.utils.translation import ugettext, ugettext_lazy as _
 from .models import validate_is_lt_hundred
@@ -31,3 +31,10 @@ class SemesterForm(forms.ModelForm):
     class Meta:
         model=Semester
         fields = ("name", "period_start", "period_end")
+
+
+class RollCallForm(forms.ModelForm):
+
+    class Meta:
+        model = RollCall
+        fields = ('present', 'date')

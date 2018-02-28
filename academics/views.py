@@ -1,10 +1,10 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.http import HttpResponseRedirect, Http404
 from django.contrib import messages
 # My imports
 from accounts.models import User
-from .forms import SubjectForm, GradeForm, SemesterForm
+from .forms import SubjectForm, GradeForm, SemesterForm, RollCallForm
 from .models import Subject, Grade, Semester
 from klass.models import Klasses
 
@@ -97,10 +97,16 @@ def subject_delete_view(request, id):
 # Everything relating subject is above
 
 def semester_view(request):
-    semester = Semester.objects.all()
-    template_name = "academics/semester/semester_list.html"
-    context = {"semester":semester,}
-    return render(request, template_name, context)
+    if request.user.is_authenticated:
+        if request.user.is_admin or request.user.is_teacher:
+            semester = Semester.objects.all()
+            template_name = "academics/semester/semester_list.html"
+            context = {"semester":semester,}
+            return render(request, template_name, context)
+        else:
+            raise Http404
+    else:
+        raise Http404
 
 
 
@@ -277,4 +283,88 @@ def grade_create_view(request, student_id, semester_id):
     else:
         raise Http404
 
-#Everythin relating Grades is below:
+#Everythin relating Grades is above:
+
+
+
+#Everything relating rollcals is here below:
+
+def create_roll(request, id):
+    if request.user.is_authenticated and request.user.is_admin or request.user.is_teacher:
+        user = get_object_or_404(User, id=id)
+        if user.is_student and request.user.part_of == user.part_of or request.user.is_admin:
+            if request.method == "POST":
+
+                form = RollCallForm(request.POST)
+                if form.is_valid():
+
+                    instance = form.save(commit=False)
+                    instance.student = user
+                    instance.save()
+                    messages.success(request, 'Roll call added succesfully!')
+                    return redirect(reverse('rolls-detail', kwargs={"id":id}))
+
+                else:
+                    messages.error(request, 'Correct the errors below')
+            else:
+                form = RollCallForm()
+
+            context = {
+                'form': form,
+                'student':user,
+                }
+            return render(request, 'academics/roll_call/create_roll.html', context )
+        else:
+            raise Http404
+    else:
+        raise Http404
+
+def rolls_class(request):
+    if request.user.is_authenticated and request.user.is_admin:
+        klass = Klasses.objects.all()
+        template_name = 'academics/roll_call/rolls_class.html'
+        context={
+        'klass':klass
+        }
+        return render(request,template_name,context)
+    else:
+        raise Http404
+
+
+def rolls_students(request, id):
+    if request.user.is_authenticated:
+        klass = get_object_or_404(Klasses, id=id)
+        klass_teacher = klass.partof.filter(is_teacher=True)[0]
+        if request.user.is_admin or request.user == klass_teacher:
+            students = klass.partof.filter(is_student=True)
+            context = {
+                "klass":klass,
+                "students":students,
+            }
+            template_name = "academics/roll_call/rolls_students.html"
+            return render(request, template_name, context)
+
+        else:
+            raise Http404
+    else:
+        raise Http404
+
+def rolls_detail(request, id):
+    if request.user.is_authenticated:
+        student = get_object_or_404(User, id=id)
+        total_present_days = student.rollcall.filter(present=True)
+        klass = student.part_of
+        teacher = klass.partof.filter(is_teacher=True)[0]
+        if request.user == teacher or request.user.is_admin or request.user == student:
+            rollcalls = student.rollcall.all()
+            context = {
+            'student':student,
+            'rollcalls':rollcalls,
+            'total_present_days':total_present_days,
+            }
+            template_name = 'academics/roll_call/rolls_details.html'
+            return render(request, template_name, context)
+        else:
+            raise Http404
+    else:
+        raise Http404

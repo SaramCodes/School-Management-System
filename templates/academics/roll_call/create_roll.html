@@ -1,0 +1,87 @@
+{% extends 'index.html' %}
+
+{% block title %}Add Roll for {{student}}{% endblock title %}
+
+{% block customcss %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/student-register.css' %}">
+{% endblock customcss %}
+
+
+{% block content %}
+<div class="register-bg">
+  <div class='my_container hoverable'>
+  <div class="row">
+    <form method="post" class='col s12' enctype="multipart/form-data">
+      {% csrf_token %}
+      <h2 class="headed teal-text text-lighten-2">Mark Attendence for {{student}}</h2>
+      {% if messages %}
+
+      <ul class="messages">
+          {% for message in messages %}
+
+          <!-- <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{message}}</li> -->
+          <div>
+          <li class="center-align green-text">{{message}}</li>
+          </div>
+          <div class="progress white">
+          <div class="indeterminate green lighten-3"></div>
+          </div>
+
+          {% endfor %}
+      </ul>
+
+
+      {% endif %}
+
+      {% if form.non_field_errors %}
+     <li>{{ form.non_field_errors }}</li>
+     {% endif %}
+
+      {% for field in form %}
+
+      <div class="row">
+
+
+            {% if field.html_name == 'date' %}
+
+            <div class="input-field col s12 ">
+              <input type="date" name="{{field.html_name}}" id="{{field.id_for_label}}" class='datepicker'>
+              <label for="{{field.id_for_label}}">Date</label>
+              {% if field.help_text %}
+              <p class='grey-text'>{{field.help_text}}</p>
+              {% endif %}
+
+              {% if field.errors %}
+              {% for error in field.errors %}
+              <p class='red-text'>{{error}}</p>
+              {% endfor %}
+              {% endif %}
+
+            </div>
+
+
+
+
+            {% elif field.html_name == "present"%}
+
+
+            <p>
+              <input type="{{field.field.widget.input_type}}" name="{{field.html_name}}" id="{{field.id_for_label}}" class='filled-in checkbox-blue'/>
+              <label for="{{field.id_for_label}}">Tick if the student was present or not</label>
+            </p>
+            {% endif %}
+
+
+        </div>
+      {% endfor %}
+
+      <button type="submit" class="btn waves-effect waves-light teal white-text">Add</button>
+    </form>
+  </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block customjs %} {% endblock customjs %}

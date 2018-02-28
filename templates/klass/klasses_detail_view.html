@@ -84,6 +84,26 @@
 
       </div>
 
+      <div class="col xl16 l12 m12 s12">
+
+        <div class="my-text"><p>Total Subjects: {{klass.subjects.count}}</p></div>
+
+        <div class="my-list">
+          {% for suba in klass.subjects.all %}
+
+          {% if request.user.is_admin %}
+
+          <p><a href="{{suba.get_absolute_url}}">{{suba.name}}</a></p>
+          {% else %}
+
+          <p>{{suba.name}}</p>
+          {% endif %}
+
+          {% endfor %}
+        </div>
+
+      </div>
+
       </div>
 
 
