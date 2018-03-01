@@ -60,8 +60,18 @@
         </div>
 
         <div class="col s12">
+          {% if student.rollcall.count == 0 %}
 
+            {% if request.user.is_admin or request.user.is_teacher %}
+              <p class="red-text">No record found! Mark their attendence and the record will show in the data below.</p>
+            {% elif request.user.is_student %}
+              <p class="red-text">No record found! Your teachers will update your record. Once it's done your status will start appearing in the table below. If you keep seeing this message, contact your teachers.</p>
+            {% endif %}
+
+          {% else %}
           <p>This student was present {{total_present_days.count}} out of {{student.rollcall.count}} days.</p>
+
+          {% endif %}
 
         </div>
 
@@ -93,7 +103,11 @@
         <br><br><br>
 
         <div class="center">
+          {% if request.user.is_admin or request.user.is_teacher %}
           <a href="/academics/attendence/klass/{{student.part_of.id}}" class="btn waves-effect waves-teal grey lighten-3 teal-text dam boto">Go Back</a>
+          {% elif request.user.is_student %}
+          <a href="{% url 'home' %}" class="btn waves-effect waves-teal grey lighten-3 teal-text dam boto">Go Back</a>
+          {% endif %}
         </div>
 
 

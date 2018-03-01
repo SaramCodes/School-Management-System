@@ -24,7 +24,7 @@ def klasses_list_view(request):
 def klasses_detail_view(request, id):
     if request.user.is_authenticated:
         klass = get_object_or_404(Klasses, id=id)
-        if request.user.is_admin or request.user in klass.partof.filter(is_teacher=True):
+        if request.user.is_admin or request.user in klass.partof.filter(is_teacher=True) or request.user in klass.partof.filter(is_student=True):
             total_num = klass.partof.filter(is_student=True).count()
 
 
@@ -39,7 +39,7 @@ def klasses_detail_view(request, id):
             }
             return render(request, template_name, context)
         else:
-            raise Http404    
+            raise Http404
 
     else:
         raise Http404

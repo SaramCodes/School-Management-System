@@ -32,8 +32,8 @@
               {% if request.user.is_student %}
 
               <li><a href="#" class="waves-effect waves-teal">MY GRADES</a></li>
-              <li><a href="#" class="waves-effect waves-teal">NOTICE BOARD</a></li>
-              <li><a href="#" class="waves-effect waves-teal">ASSIGNMENTS</a></li>
+              <li><a href="{{request.user.part_of.get_absolute_url}}" class="waves-effect waves-teal">MY CLASS</a></li>
+              <li><a href="/academics/attendence/{{request.user.id}}" class="waves-effect waves-teal">ATTENDENCE</a></li>
               <a class='dropdown-button btn my-dropdown teal lighten-2' data-beloworigin="true" href='#' data-activates='dropdown1'>Hi {{request.user.first_name}}! <i class="medium material-icons">arrow_drop_down</i></a>
 
               <ul id='dropdown1' class='dropdown-content'>
@@ -89,8 +89,8 @@
               {% if request.user.is_student %}
 
               <li><a href="#" class="waves-effect waves-red">My Grades</a></li>
-              <li><a href="#" class="waves-effect waves-red">Notice Board</a></li>
-              <li><a href="#" class="waves-effect waves-red">Assignments</a></li>
+              <li><a href="{{request.user.part_of.get_absolute_url}}" class="waves-effect waves-red">My Class</a></li>
+              <li><a href="/academics/attendence/{{request.user.id}}" class="waves-effect waves-red">Attendence</a></li>
               <li><a href="{{request.user.get_absolute_url}}" class="waves-effect waves-red">Profile</a></li>
               <li><a href="{% url 'change_password' %}" class="waves-effect waves-red">Change Password</a></li>
               <li><a href="{% url 'logout_view' %}" class="waves-effect waves-red">Logout</a></li>

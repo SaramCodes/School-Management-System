@@ -12,16 +12,14 @@ I made this project just for fun and to practice my Django skills so far. I also
 
 * Techer can grade the students. Only those subjects will show which are taught in the class the student is currently in.
 
+* Teacher can mark attendence. of the students of their class.
+
+* Students can view their attendences.
+
 * Only Admin can add new semesters, subjects and classes.
 
 Well those were the details.
 
-### What i've done so far ヾ(＠＾▽＾＠)ﾉ:
-
-I've done most of the work. I've made all the views and their respective templates except for the student. I still have to make templates for the Student. Teachers and admins are done
-### o(╥﹏╥)o What is left o(╥﹏╥)o:
-
-I have to make the templates for the student. All things except this has been done.
 
 
 ## v(ಥ ̯ ಥ)v To Run The Program :

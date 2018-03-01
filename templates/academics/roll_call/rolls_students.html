@@ -33,7 +33,7 @@
 
 
       <div class="my-text">
-        <p>Select a student to mark their attendence</p> <hr>
+        <p>Select a student to view record or click on the add link to mark attendence.</p> <hr>
       </div>
 
       <div class="row">
@@ -54,7 +54,12 @@
           {% endfor %}
         </div>
         <div class="col offset-s3 s6">
+          {% if request.user.is_admin %}
           <a href="{% url 'rolls-class' %}" class="btn waves-effect waves-teal grey lighten-3 teal-text dam boto">Go Back</a>
+          {% elif request.user.is_teacher %}
+          <a href="{% url 'home' %}" class="btn waves-effect waves-teal grey lighten-3 teal-text dam boto">Go Back</a>
+          {% endif %}
+
         </div>
 
       </div>
