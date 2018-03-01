@@ -31,7 +31,7 @@
 
               {% if request.user.is_student %}
 
-              <li><a href="#" class="waves-effect waves-teal">MY GRADES</a></li>
+              <li><a href="{% url 'semester-view' %}" class="waves-effect waves-teal">MY GRADES</a></li>
               <li><a href="{{request.user.part_of.get_absolute_url}}" class="waves-effect waves-teal">MY CLASS</a></li>
               <li><a href="/academics/attendence/{{request.user.id}}" class="waves-effect waves-teal">ATTENDENCE</a></li>
               <a class='dropdown-button btn my-dropdown teal lighten-2' data-beloworigin="true" href='#' data-activates='dropdown1'>Hi {{request.user.first_name}}! <i class="medium material-icons">arrow_drop_down</i></a>
@@ -88,7 +88,7 @@
 
               {% if request.user.is_student %}
 
-              <li><a href="#" class="waves-effect waves-red">My Grades</a></li>
+              <li><a href="{% url 'semester-view' %}" class="waves-effect waves-red">My Grades</a></li>
               <li><a href="{{request.user.part_of.get_absolute_url}}" class="waves-effect waves-red">My Class</a></li>
               <li><a href="/academics/attendence/{{request.user.id}}" class="waves-effect waves-red">Attendence</a></li>
               <li><a href="{{request.user.get_absolute_url}}" class="waves-effect waves-red">Profile</a></li>

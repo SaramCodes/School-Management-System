@@ -98,13 +98,10 @@ def subject_delete_view(request, id):
 
 def semester_view(request):
     if request.user.is_authenticated:
-        if request.user.is_admin or request.user.is_teacher:
-            semester = Semester.objects.all()
-            template_name = "academics/semester/semester_list.html"
-            context = {"semester":semester,}
-            return render(request, template_name, context)
-        else:
-            raise Http404
+        semester = Semester.objects.all()
+        template_name = "academics/semester/semester_list.html"
+        context = {"semester":semester,}
+        return render(request, template_name, context)
     else:
         raise Http404
 
@@ -196,19 +193,20 @@ def grade_detail_view_teacher(request, semester_id, student_id):
 
 
 def grade_detail_view(request, semester_id, student_id):
-    if request.user.is_authenticated and request.user.is_admin:
-
+    if request.user.is_authenticated:
         student = get_object_or_404(User, id=student_id)
-        semester = get_object_or_404(Semester, id=semester_id)
-        grades = semester.grades.filter(student=student)
-        template_name = "academics/grade/grade_detail.html"
-        context = {
-            "student":student,
-            "semester":semester,
-            "grades":grades,
-        }
-        return render(request, template_name, context)
-
+        if request.user.is_admin or request.user == student:
+            semester = get_object_or_404(Semester, id=semester_id)
+            grades = semester.grades.filter(student=student)
+            template_name = "academics/grade/grade_detail.html"
+            context = {
+                "student":student,
+                "semester":semester,
+                "grades":grades,
+            }
+            return render(request, template_name, context)
+        else:
+            raise Http404
     else:
         raise Http404
 

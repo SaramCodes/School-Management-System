@@ -159,7 +159,7 @@ def user_detail(request, id):
         raise Http404
 
     user = get_object_or_404(User, id=id)
-    if request.user in user.part_of.partof.all():
+    if request.user in user.part_of.partof.all() or request.user.is_admin:
 
         user = get_object_or_404(User, id=id)
         template_name = 'accounts/user-detail.html'

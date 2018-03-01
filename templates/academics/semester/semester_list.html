@@ -57,6 +57,9 @@
 
             <h4><a href="/academics/grade/{{obj.id}}/semester/{{request.user.part_of.id}}" class="my-link">{{obj.name}} - {{obj.period_start}}</a></h4> <br>
 
+            {% elif request.user.is_student %}
+            <h4><a href="/academics/grades/{{obj.id}}/student/{{request.user.id}}" class="my-link">{{obj.name}} - {{obj.period_start}}</a></h4> <br>
+
             {% endif %}
 
 

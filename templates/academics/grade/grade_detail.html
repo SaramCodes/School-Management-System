@@ -87,8 +87,10 @@
       <div class="progress white">
       <div class="indeterminate red lighten-2"></div>
       </div> <br>
-
+      {% if request.user.is_student %}
+      {% else %}
       <p>Grade the student for the period of {{semester.period_start}} - {{semester.period_end}} first and then their grades will start showing on this page</p>
+      {% endif %}
     </div>
 
     <br><br><br>
@@ -103,6 +105,11 @@
       <a href="/academics/grade/{{semester.id}}/semester/{{student.part_of.id}}" class="btn waves-red boto">Go Back</a>
     </div>
 
+    {% elif request.user.is_student %}
+
+    <div class="center">
+      <a href="{% url 'semester-view' %}" class="btn waves-red boto">Go Back</a>
+    </div>
 
     {% endif %}
       {% endif %}
